@@ -1,0 +1,62 @@
+{% extends 'car_dealer_navbar.html' %}
+{% block title %} Edit Car Details {% endblock %}
+{% block css %}
+{% endblock %}
+{% block body %}
+{% load static %}
+<style>
+
+        body {
+            background-image: url("{% static '/image/car1.jpg' %}");
+            background-size: cover;
+            background-repeat:no-repeat;
+            font-family: Arial, sans-serif;
+            color: ghostwhite;
+        }
+</style>
+<div class="container mt-5">
+    <form method="POST" enctype="multipart/form-data"> {% csrf_token %}
+        <div class="row mt-2">
+            <div class="form-group col-md-12">
+                <label><i style="font-weight: bold;">Car Name</i></label>
+                <input type="text" class="form-control" name="car_name" value="{{car.name}}" required>
+            </div>
+        </div>
+        
+        <div class="row mt-3">
+            <div class="form-group col-md-6">
+                <label><i style="font-weight: bold;">City</i></label>
+                <input type="text" class="form-control" name="city" value="{{car.location.city}}" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label><i style="font-weight: bold;">Car Image &nbsp;&nbsp;&nbsp;<a href="/media/{{car.image}}/">View Image</a></i></label>
+                <input type="file" class="form-control" name="image">
+            </div>
+        </div>
+    
+        <div class="row mt-3">
+            <div class="form-group col-md-12">
+                <label><i style="font-weight: bold;">Capacity</i></label>
+                <input type="number" class="form-control" name="capacity" value="{{car.capacity}}" required>
+            </div>
+        </div>
+    
+        <div class="row mt-3">
+            <div class="form-group col-md-12">
+                <label><i style="font-weight: bold;">Rent (per day)</i></label>
+                <input type="number" class="form-control" name="rent" value="{{car.rent}}" required>
+            </div>
+        </div>
+    
+        <button type="submit" class="btn btn-primary mt-4 btn-lg">Update Details</button>
+      </form>
+      </div>
+{% endblock %}
+{% block js %}
+<script>
+    {% if alert %}
+    alert("Car Details Updated Successfully.");
+    document.location = "/all_cars"
+    {% endif %}
+</script>
+{% endblock %}

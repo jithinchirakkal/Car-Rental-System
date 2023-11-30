@@ -1,0 +1,56 @@
+{% extends 'customer_navbar.html' %}
+{% block title %} Customer Login {% endblock %}
+{% block css %}
+{% endblock %}
+{% block body %}
+{% load static %}
+
+<style>
+        body {
+            background-image: url("{% static '/image/car4.jpg' %}");
+            background-size: cover;
+            background-repeat:no-repeat;
+            font-family: Arial, sans-serif;
+            color: ghostwhite;
+        }
+      button{
+          background-color: #198754;
+          color: white;
+          hieght: 20px;
+          width: 150px;
+          border-radius: 5px;
+          height: 40px;
+
+      }
+</style>
+<div class="container mt-4" style="color: black">
+      <h3><b>Order Completed</b></h3>
+      <b>Your Vehicle Order Has Been Processed!</b><br><br>
+      <b>Total Rent :</b> ₹ {{order.rent}}<br><br>
+      <b>Vehicle :</b> {{order.car.name}}<br><br>
+      <b>Duration :</b> {{order.days}} days<br><br>
+      <b>Car-Dealer :</b> {{order.car_dealer.car_dealer.first_name}} {{order.car_dealer.car_dealer.last_name}}<br><br>
+
+
+      <b>Car-Dealer's Contact:</b> {{order.car_dealer.phone}}<br><br>
+
+      <button class="redirect-button"  onclick="redirectToQRCode()" >Pay Now</button>
+
+            <script>
+            function redirectToQRCode() {
+                window.location.href = "{% url 'paymentqr' %}";
+            }
+            </script>
+
+
+
+      <!--      <button class="btn" style="color: white; background-color: rgb(0, 98, 128);" type="submit">Confirm</button><br><br>-->
+
+
+      <!--      <a href="{% url 'paymentqr' %}" class="btn btn-primary">Click Me</a>-->
+
+<!--      <a href="https://api.whatsapp.com/send/?phone=%2B919539519075&text=Hi+Can+I+rent+car+with+number+KL57+W3456%3f" class="btn btn-success">Pay Now</a>-->
+      </div>
+      </div>
+</div>
+{% endblock %}

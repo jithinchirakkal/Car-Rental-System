@@ -1,0 +1,70 @@
+{% extends 'customer_navbar.html' %}
+{% block title %} Customer Login {% endblock %}
+{% block css %}
+{% load static %}
+<style>
+
+        body {
+            background-image: url("{% static '/image/car8.jpg' %}");
+            background-size: cover;
+            background-repeat:no-repeat;
+<!--            background-position: center;-->
+            font-family: Arial, sans-serif;
+            color: ghostwhite;
+        }
+h1 {
+    text-align: center;
+    color: #e9ecef;
+}
+table{
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+}
+th{
+    background-color: black;
+    color: white;
+}
+td{
+
+    color: white;
+}
+th, td{
+    border: 2px solid #ddd;
+}
+</style>
+{% endblock %}
+{% block body %}
+<div class="container">
+    {% if all_orders %}
+    <h1 class="mt-4">Past Orders</h1>
+    <div class="users-table mt-4">
+    <table>
+        <tbody>
+            <tr>
+                <th>Car Name</th>
+                <th>Image</th>
+                <th>Days</th>
+                <th>Rent</th>
+                <th>Capacity</th>
+                <th>Action</th>
+            </tr>
+            {% for order in all_orders %}
+            <tr>
+                <td>{{order.car.name}}</td>
+                <td><img src="{{order.car.image.url}}" alt="" width="100px" height="100px"></td>
+                <td>{{order.days}}</td>
+                <td>₹ {{order.rent}}</td>
+                <td>{{order.car.capacity}}</td>
+                <td><a href="/delete_order/{{order.id}}/" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete {{car.name}}?')">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <br>
+    <h2>No Past Orders</h2>
+    {% endif %}
+</div>
+{% endblock %}

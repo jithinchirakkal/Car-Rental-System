@@ -1,0 +1,40 @@
+{% extends 'customer_navbar.html' %}
+{% block title %} Search Cars {% endblock %}
+{% block css %}
+{% endblock %}
+{% block body %}
+
+{% load static %}
+<style>
+
+        body {
+            background-image: url("{% static '/image/car5.jpg' %}");
+            background-size: cover;
+            background-repeat:no-repeat;
+            font-family: Arial, sans-serif;
+            color: ghostwhite;
+        }
+        .display-5 {
+            font-size: calc(1.425rem + 2.1vw);
+            font-weight: 300;
+            line-height: 1.2;
+            color: initial;
+        }
+</style>
+<br>
+<div class="container ">
+  <div class="p-5  rounded-3">
+    <div class="container-fluid">
+      <h1 class="display-5 fw-bold">Welcome to Online Car Rental System</h1>
+      <p class="col-md-8 fs-4">You can enter your city below and see the list of available cars.</p>
+    </div>
+    <form class="w3-container" action="/search_results/" method="post">
+        {% csrf_token %}
+        <br><br>
+        <lable><i style="font-weight: bold; font-size: large;">Enter City Name :</i></lable> 
+        <input type="text" class="form-control mt-3" name="city"><br>
+        <button class="btn btn-primary" type="submit">Search Cars</button>
+      </form>
+  </div>
+</div>
+{% endblock %}

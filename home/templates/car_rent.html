@@ -1,0 +1,30 @@
+{% extends 'customer_navbar.html' %}
+{% block title %} Customer Login {% endblock %}
+{% block css %}
+{% endblock %}
+{% block body %}
+{%load static %}
+<style>
+
+        body {
+            background-image: url("{% static '/image/car13.jpg' %}");
+            background-size: cover;
+<!--            background-position: center;-->
+            background-repeat:no-repeat;
+            font-family: Arial, sans-serif;
+            color: ghostwhite;
+        }
+</style>
+<div class="container mt-4">
+<b>Car : {{car.name}}</b>
+<form class="w3-container" action="/order_details/" method="post">
+    {% csrf_token %}
+    <b>Price : ₹ {{cost_per_day}} per day</b><br><br>
+    <lable>How many days?</lable> 
+    <input type="text" placeholder="Enter the No.of days" name="days"><br><br>
+    <button class="btn" style="color: white; background-color: rgb(0, 98, 128);" type="submit">Confirm</button><br><br>
+    <input type="hidden" value="{{car.id}}" name="id">
+    <br><br>
+  </from>
+</div>
+{% endblock %}

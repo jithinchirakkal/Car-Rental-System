@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %} Customer Login {% endblock %}
+{% block css %}
+{% endblock %}
+{% block body %}
+{% load static %}
+<style>
+
+        body {
+            background-image: url("{% static '/image/car-6.jpg' %}");
+            background-size: inherit;
+            background-repeat:no-repeat;
+            font-family: Arial, sans-serif;
+            color: ghostwhite;
+        }
+        input{
+          border-radius: 20px;
+          background:blue;
+        }
+</style>
+
+<form style="border:0px solid #ccc" method="POST"> {% csrf_token %}
+  <div class="container">
+    <h1>Customer Login</h1>
+    <p>Please fill in this form to login into your account.</p>
+    <h6>If not yet register, then click here <a href="/customer_signup/">Signup</a></h6>
+    <hr>
+
+    <label><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="username" required>
+
+    <label><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="password" required>
+    
+    <label>
+      <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+    </label>
+    <br>
+      <button type="submit" class="btn" style="background-color: #71cc0971; font-size: 22px; width: 8rem;">Login</button>
+  </div>
+</form>
+</body>
+</html>
+{% endblock %}
+{% block js %}
+<script>
+  {% if alert %}
+  alert("Invalid Credentials")
+  document.location = "/customer_login"
+  {% endif %}
+</script>
+{% endblock %}
